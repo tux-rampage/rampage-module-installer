@@ -50,6 +50,11 @@ class ComposerInstaller extends LibraryInstaller
      */
     protected $modulesConfig = 'application/etc/modules.conf';
 
+    /**
+     * @var \rampage\composer\Config
+     */
+    private $rootConfig = null;
+
 	/**
      * @see \Composer\Installer\LibraryInstaller::__construct()
      */
@@ -57,13 +62,19 @@ class ComposerInstaller extends LibraryInstaller
     {
         parent::__construct($io, $composer, $type);
 
-        if ($modulesDir = $composer->getConfig()->get('rampage.modules-dir')) {
-            $this->moduleDir = $modulesDir;
-        }
+        $config = new Config($composer->getPackage()->getExtra());
 
-        if ($modConfig = $composer->getConfig()->get('rampage.modules-config')) {
-            $this->modulesConfig = $modConfig;
-        }
+        $this->rootConfig = $config;
+        $this->moduleDir = $this->filesystem->normalizePath($config->get('modules-dir', $this->moduleDir));
+        $this->modulesConfig = $this->filesystem->normalizePath($config->get('modules-config', $this->modulesConfig));
+    }
+
+    /**
+     * @return \rampage\composer\Config
+     */
+    protected function getRootConfig()
+    {
+        return $this->rootConfig;
     }
 
     /**
@@ -110,7 +121,10 @@ class ComposerInstaller extends LibraryInstaller
             $conf = array();
         }
 
+        // FIXME: Fetch package name from manifest
         $conf[$this->getModuleName($package)] = true;
+        $writer = new ConfigWriter($conf, 'modules');
+        $writer->write($this->modulesConfig);
     }
 
 	/**

@@ -1,6 +1,7 @@
 {
     "name": "rampage-php/composer-module-installer",
     "type": "composer-installer",
+    "description": "Composer installer for rampage-php framework modules",
     "license": "GPL-3.0",
     
     "autoload": { "psr-0": {"rampage\\composer\\": "src/"} },
