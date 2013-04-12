@@ -34,7 +34,7 @@ use Composer\Repository\InstalledRepositoryInterface;
 /**
  * Module installer
  */
-class ComposerInstaller extends LibraryInstaller
+class ModuleInstaller extends LibraryInstaller
 {
     /**
      * Module dir
