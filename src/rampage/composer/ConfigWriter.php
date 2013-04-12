@@ -80,7 +80,7 @@ class ConfigWriter
      */
     private function createPropertyLine($key, $value)
     {
-        if (is_bool($value)) {
+        if (is_bool($value) || ($value == '1') || ($value == '0')) {
             return $key . ' = ' . ($value? 'true' : 'false') . "\n";
         }
 
