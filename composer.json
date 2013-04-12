@@ -6,6 +6,9 @@
     
     "autoload": { "psr-0": {"rampage\\composer\\": "src/"} },
     "extra": {
-        "class": "rampage\\composer\\ModuleInstaller"
+        "class": "rampage\\composer\\ModuleInstaller",
+        "branch-alias": {
+            "dev-master": "1.0.x-dev"
+        }
     }
 }
