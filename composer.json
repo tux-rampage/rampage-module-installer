@@ -3,6 +3,15 @@
     "type": "composer-installer",
     "description": "Composer installer for rampage-php framework modules",
     "license": "GPL-3.0",
+    "keywords": ["framework", "zf2", "rampage", "composer", "installer"],
+    
+    "authors": [
+        { "name": "Axel H.", "email": "rampagephp@linux-rampage.org", "role": "developer" }
+    ],
+    
+    "support": {
+        "issues": "https://github.com/tux-rampage/rampage-module-installer/issues"
+    },
     
     "autoload": { "psr-0": {"rampage\\composer\\": "src/"} },
     "extra": {
